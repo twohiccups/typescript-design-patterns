@@ -1,5 +1,13 @@
 import { CanvasElement } from "./canvasElements";
 
+
+
+interface Memento {
+    getName(): string;
+    getTimestamp(): number;
+}
+
+
 export class CanvasEditor {
     private elements: CanvasElement[]
     private fontColor: string;
@@ -39,6 +47,7 @@ export class CanvasEditor {
         return snapshot;
     }
 
+
     restore(snapshot: Memento): void {
         if (!(snapshot instanceof CanvasSnapshot)) {
             throw new Error("Invalid memento for this CanvasEditor");
@@ -58,13 +67,6 @@ export class CanvasEditor {
         };
     }
 }
-
-
-interface Memento {
-    getName(): string;
-    getTimestamp(): number;
-}
-
 
 interface CanvasSnapshotState {
     elements: CanvasElement[]
